@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; min-width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-color: blue;
+}
+
+
+
+
+
+.navbar {
+    position: absolute;
+    height: 7vh; width: 100vw;
+    top: 0;
+}
+i {
+    position: absolute;
+    font-size: xx-large;
+    margin-top: 5% ;
+    margin-left: 5%;
+    color: white;
+
+    visibility: collapse;
+}
+.thename {
+    position: relative;
+    justify-self: center;
+    width: fit-content;
+    margin-top: 6% ;
+    font-size: x-large;
+    color: white;
+    font-family: Arial;
+}
+
+
+
+
+
+.container_parent {
+    position: absolute;
+    width: 100vw; height: 85vh;
+    margin-top: 15vh;
+    background-color: white;
+    display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+}
+.container_child_books {
+    display: flex; flex-wrap: wrap;
+    height: 90%; width: 90%;
+    overflow: auto;
+
+    visibility: visible;
+}
+.container_child_moduls {
+    position: absolute;
+    display: flexbox;
+    align-items: center;
+    height: 90%; width: 90%;
+    overflow: auto;
+
+    visibility: collapse;
+}
+.container_child_lessons {
+    position: absolute;
+    display: flex; flex-direction: column;
+    align-items: center;
+    height: 90%; width: 90%;
+    overflow: auto;
+
+    visibility: collapse;
+}
+
+
+
+
+
+.book {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 30vh; width: 44%; 
+    margin: 2% 3% 3% 3%;
+    background-color: aqua;
+    border-radius: 13px;
+    box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
+}
+.book_name {
+    position: absolute;
+    align-self: top;
+    font-family: Arial;
+    font-size: xx-large;
+    width: fit-content; height: fit-content;
+    margin-top: 2vh;
+}
+.book_descrip {
+    position: absolute;
+    align-self: center;
+    font-family: Arial;
+    font-size: large;
+    width: 86%; height: fit-content;
+    margin-top: 1vh;
+}
+.book_open_button {
+    position: absolute;
+    align-self: end;
+    height: 5vh; width: 88%;
+    margin-bottom: 1vh;
+    background-color: blue;
+    border-radius: 9px;
+    border: 0px solid blue;
+    color: white;
+    font-size: larger;
+}
+.book_open_button:active {
+    color: green;
+    background-color: white;
+}
+
+
+
+
+
+.modul {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    height: 10vh; width: 94%; 
+    margin: 3%;
+    background-color: aqua;
+    border-radius: 13px;
+    box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
+}
+.modul_wrapper {
+    position: relative;
+    height: fit-content;
+    margin: 3% 50% 3% 5%;
+    width: 48%;
+}
+.modul_name {
+    position: relative;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+    width: fit-content; height: fit-content;
+}
+.modul_descrip {
+    position: relative;
+    font-family: Arial;
+    font-size: large;
+    width: fit-content; height: fit-content;
+}
+.modul_open_button {
+    position: absolute;
+    align-self: end;
+    margin-left: 60%; margin-bottom: 4%;
+    height: 50%; width: 35%;
+    border: 0px; border-radius: 10px;
+    background-color: blue;
+    color: white;
+    font-size: large;
+}
+.modul_open_button:active {
+    color: green;
+    background-color: white;
+}
+
+
+
+
+
+.lesson {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    height: 19vh; width: 94%; 
+    margin: 3%;
+    background-color: aqua;
+    border-radius: 13px;
+    box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
+}
+.lesson_wrapper {
+    position: absolute;
+    height: fit-content;
+    margin: 3% 50% 2% 5%;
+    width: 48%;
+}
+.lesson_name {
+    position: relative;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+    width: fit-content; height: fit-content;
+}
+.lesson_descrip {
+    position: relative;
+    font-family: Arial;
+    font-size: large;
+    width: fit-content; height: fit-content;
+}
+.lesson_open_button {
+    position: absolute;
+    align-self: end;
+    margin-left: 60%; margin-bottom: 4%;
+    height: 25%; width: 35%;
+    border: 0px; border-radius: 10px;
+    background-color: blue;
+    color: white;
+    font-size: large;
+}
+.lesson_open_button:active {
+    color: green;
+    background-color: white;
+}
+
+
+

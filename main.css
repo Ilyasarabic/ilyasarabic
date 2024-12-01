@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; min-width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-image: url(assets/jpg/background_two.jpeg);
+}
+
+
+
+.greating {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font: bold;
+    font-size: x-large;
+    margin-left: 15vw; margin-right: 15vw;
+}
+.ayat {
+    color: white;
+}
+.nomer {
+    color: white;
+    margin-left: 25vw;
+}
+
+
+
+.buttons {
+    height: fit-content; width: fit-content;
+    position: fixed;
+    margin-top: 40vh; margin-left: 30vw; margin-right: 30vw;
+}
+.start_button {
+    color: white;
+    width: 100px; height: 40px;
+    background: transparent; border: 2px solid white;
+    border-radius: 6px;
+}
+.start_button:active {
+    color: green;
+    background-color: white;
+}
+
+
+
