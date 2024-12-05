@@ -6,6 +6,10 @@
         
         <link rel="stylesheet" href="home.css">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+
         <title>Ilyas ARABIC</title>
     </head>
 
@@ -20,52 +24,162 @@
 
             <div class="container_child_books" id="books">
 
-                <div class="book">
-                    <h1 class="book_name">Книга 1</h1>
-                    <p class="book_descrip">Уровень: A1<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
+                <div id="book_one" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/A1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Первая часть
+                        </div>
+                        <div class="book_descrip">
+                            Вводный уровень для тех, кто только начинает изучать 
+                            арабский язык. Здесь представлены базовые фразы и 
+                            простая грамматика.
+                        </div>
+                    </div>
                     <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 2</h1>
-                    <p class="book_descrip">Уровень: A2<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('A2')">Открыть</button>
+                <div id="book_two" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/A2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Вторая часть
+                        </div>
+                        <div class="book_descrip">
+                            Углубляет знания начального уровня. Главная цель – 
+                            расширение активного словарного запаса.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 3</h1>
-                    <p class="book_descrip">Уровень: B1<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('B1')">Открыть</button>
+                <div id="book_three" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/B1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Третья часть
+                        </div>
+                        <div class="book_descrip">
+                            Переход на новый уровень повседневного общения. Вводятся 
+                            более сложные тексты, которые готовят к реальной практике.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 4</h1>
-                    <p class="book_descrip">Уровень: B2<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('B2')">Открыть</button>
+                <div id="book_four" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/B2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Четвертая часть
+                        </div>
+                        <div class="book_descrip">
+                            Расширяет грамматический фундамент, углубляет работу с 
+                            текстами средней сложности. Это путь к свободе 
+                            выражения мыслей.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 5</h1>
-                    <p class="book_descrip">Уровень: C1<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('C1')">Открыть</button>
+                <div id="book_five" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/C1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Пятая часть
+                        </div>
+                        <div class="book_descrip">
+                            Уровень «средний» – больше фокуса на нюансах грамматики 
+                            и стилях речи. Темы становятся шире, включая культурные 
+                            аспекты арабского мира.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 6</h1>
-                    <p class="book_descrip">Уровень: C2<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('C2')">Открыть</button>
+                <div id="book_six" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/C2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Шестая часть
+                        </div>
+                        <div class="book_descrip">
+                            Углубление в сложные структуры языка, ориентированные 
+                            на уверенное общение. Включает богатую лексику и тексты 
+                            академического уровня.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 7</h1>
-                    <p class="book_descrip">Уровень: D1<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('D1')">Открыть</button>
+                <div id="book_seven" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/D1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Седьмая часть
+                        </div>
+                        <div class="book_descrip">
+                            «Выше среднего», где важна точность речи и восприятия. 
+                            Книга учит понимать сложные тексты и вести 
+                            содержательные беседы.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
-                <div class="book">
-                    <h1 class="book_name">Книга 8</h1>
-                    <p class="book_descrip">Уровень: D2<br>Модулей: 8<br>Слов: 100<br><br>Статус: 0%</p>
-                    <button class="book_open_button" onclick="onBookClick('D2')">Открыть</button>
+                <div id="book_eight" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/D2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Восьмая часть
+                        </div>
+                        <div class="book_descrip">
+                            Академические тексты и глубокий анализ языка делают 
+                            этот уровень настоящим испытанием для тех, кто 
+                            стремится к профессионализиу.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
                 </div>
 
             </div>
