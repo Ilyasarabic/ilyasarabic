@@ -10,7 +10,7 @@ body {
     height: 100vh; width: 100vw;
     background-size: cover;
     background-position: center;
-    background-color: blue;
+    background-color: #42AAFF;
 }
 
 
@@ -35,8 +35,8 @@ i {
     position: relative;
     justify-self: center;
     align-self: center;
-    width: 40vw;
-    margin-top: 6% ; margin-left: 30vw;
+    width: fit-content;
+    margin-top: 6%;
     font-size: larger;
     color: white;
     font-family: Arial;
@@ -120,6 +120,7 @@ i {
     background-origin: padding-box;
     justify-content: center;
     text-align: center;
+    font-family: "Amiri", serif;
     width: 100%;
     margin-left: 0; margin-right: 0;
 }
@@ -195,30 +196,31 @@ i {
     margin: 3%;
     background-color: aqua;
     border-radius: 13px;
-    box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
+    box-shadow: 2px 2px 5px 2px rgba(173, 144, 144, 0.8);
 }
 .modul_wrapper {
     position: relative;
     height: fit-content;
-    margin: 3% 50% 3% 5%;
+    align-self: center;
+    margin-left: 5%;
     width: 48%;
 }
 .modul_name {
     position: relative;
-    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-family: "Commissioner", sans-serif;
     font-size: larger;
     width: fit-content; height: fit-content;
 }
 .modul_descrip {
     position: relative;
-    font-family: Arial;
+    font-family: "Commissioner", sans-serif;
     font-size: medium;
     width: fit-content; height: fit-content;
 }
 .modul_open_button {
     position: absolute;
-    align-self: end;
-    margin-left: 60%; margin-bottom: 4%;
+    align-self: center;
+    margin-left: 60%;
     height: 50%; width: 35%;
     border: 0px; border-radius: 10px;
     background-color: blue;
@@ -243,30 +245,31 @@ i {
     margin: 3%;
     background-color: aqua;
     border-radius: 13px;
-    box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
+    box-shadow: 2px 2px 5px 2px rgba(173, 144, 144, 0.8);
 }
 .lesson_wrapper {
-    position: absolute;
+    position: relative;
     height: fit-content;
-    margin: 3% 50% 2% 5%;
+    align-self: center;
+    margin-left: 5%;
     width: 48%;
 }
 .lesson_name {
     position: relative;
-    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-family: "Commissioner", sans-serif;
     font-size: larger;
     width: fit-content; height: fit-content;
 }
 .lesson_descrip {
     position: relative;
-    font-family: Arial;
+    font-family: "Commissioner", sans-serif;
     font-size: medium;
     width: fit-content; height: fit-content;
 }
 .lesson_open_button {
     position: absolute;
-    align-self: end;
-    margin-left: 60%; margin-bottom: 4%;
+    align-self: center;
+    margin-left: 60%;
     height: 50%; width: 35%;
     border: 0px; border-radius: 10px;
     background-color: blue;
