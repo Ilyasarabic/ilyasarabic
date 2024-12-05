@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; min-width: 100vw;
+    height: 100vh; width: 100vw;
     background-size: cover;
     background-position: center;
     background-color: blue;
@@ -24,7 +24,7 @@ body {
 }
 i {
     position: absolute;
-    font-size: xx-large;
+    font-size: x-large;
     margin-top: 5% ;
     margin-left: 5%;
     color: white;
@@ -34,9 +34,10 @@ i {
 .thename {
     position: relative;
     justify-self: center;
-    width: fit-content;
-    margin-top: 6% ;
-    font-size: x-large;
+    align-self: center;
+    width: 40vw;
+    margin-top: 6% ; margin-left: 30vw;
+    font-size: larger;
     color: white;
     font-family: Arial;
 }
@@ -57,8 +58,10 @@ i {
     border-top-right-radius: 26px;
 }
 .container_child_books {
-    display: flex; flex-wrap: wrap;
-    height: 90%; width: 90%;
+    position: absolute;
+    height: 92%; width: 90vw;
+    z-index: 100;
+    display: flex;
     overflow: auto;
 
     visibility: visible;
@@ -87,47 +90,98 @@ i {
 
 
 .book {
+    flex-shrink: 0;
     position: relative;
     display: flex;
     justify-content: center;
-    height: 30vh; width: 44%; 
+    height: 70vh; width: 90%; 
     margin: 2% 3% 3% 3%;
     background-color: aqua;
     border-radius: 13px;
     box-shadow: 2px 5px 8px 2px rgba(173, 144, 144, 0.8);
 }
+.img {
+    position: absolute;
+    top: 0;
+    height: 80%; width: 100%;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    flex-shrink: 0;
+}
+.info {
+    position: absolute;
+    height: 25%; width: 96%;
+    align-self: end;
+    margin-bottom: 7vh;
+}
 .book_name {
     position: absolute;
-    align-self: top;
-    font-family: Arial;
-    font-size: xx-large;
-    width: fit-content; height: fit-content;
-    margin-top: 2vh;
+    font-size: x-large;
+    background-origin: padding-box;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-left: 0; margin-right: 0;
+}
+.book_lvl {
+    position: absolute;
+    font-family: "Commissioner", sans-serif;
+    font-size: small;
+    background-origin: padding-box;
+    justify-content: center;
+    text-align: center;
+    width: 100%; margin-top: 9%;
 }
 .book_descrip {
     position: absolute;
-    align-self: center;
-    font-family: Arial;
-    font-size: large;
-    width: 86%; height: fit-content;
-    margin-top: 1vh;
+    background-origin: padding-box;
+    justify-content: center;
+    font-family: "Commissioner", sans-serif;
+    font-size: medium;
+    width: fit-content; height: max-content;
+    margin-top: 15%;
+    white-space: normal;
 }
 .book_open_button {
     position: absolute;
     align-self: end;
-    height: 5vh; width: 88%;
+    height: 5vh; width: 96%;
     margin-bottom: 1vh;
     background-color: blue;
     border-radius: 9px;
     border: 0px solid blue;
     color: white;
-    font-size: larger;
+    font-size: medium;
 }
 .book_open_button:active {
     color: green;
     background-color: white;
 }
 
+#book_one {
+    background-color: #A8E6CF;
+}
+#book_two {
+    background-color: #DCE775;
+}
+#book_three {
+    background-color: #FFF176;
+}
+#book_four {
+    background-color: #FFD54F;
+}
+#book_five {
+    background-color: #FF8A65;
+}
+#book_six {
+    background-color: #E57373;
+}
+#book_seven {
+    background-color: #BA68C8;
+}
+#book_eight {
+    background-color: #C62828;
+}
 
 
 
@@ -152,13 +206,13 @@ i {
 .modul_name {
     position: relative;
     font-family: 'Arial Narrow', Arial, sans-serif;
-    font-size: xx-large;
+    font-size: larger;
     width: fit-content; height: fit-content;
 }
 .modul_descrip {
     position: relative;
     font-family: Arial;
-    font-size: large;
+    font-size: medium;
     width: fit-content; height: fit-content;
 }
 .modul_open_button {
@@ -169,7 +223,7 @@ i {
     border: 0px; border-radius: 10px;
     background-color: blue;
     color: white;
-    font-size: large;
+    font-size: medium;
 }
 .modul_open_button:active {
     color: green;
@@ -185,7 +239,7 @@ i {
     display: flex;
     justify-content: space-between;
     z-index: 100;
-    height: 19vh; width: 94%; 
+    height: 10vh; width: 94%; 
     margin: 3%;
     background-color: aqua;
     border-radius: 13px;
@@ -200,29 +254,31 @@ i {
 .lesson_name {
     position: relative;
     font-family: 'Arial Narrow', Arial, sans-serif;
-    font-size: xx-large;
+    font-size: larger;
     width: fit-content; height: fit-content;
 }
 .lesson_descrip {
     position: relative;
     font-family: Arial;
-    font-size: large;
+    font-size: medium;
     width: fit-content; height: fit-content;
 }
 .lesson_open_button {
     position: absolute;
     align-self: end;
     margin-left: 60%; margin-bottom: 4%;
-    height: 25%; width: 35%;
+    height: 50%; width: 35%;
     border: 0px; border-radius: 10px;
     background-color: blue;
     color: white;
-    font-size: large;
+    font-size: medium;
 }
 .lesson_open_button:active {
     color: green;
     background-color: white;
 }
+
+
 
 
 
