@@ -17,8 +17,7 @@ body {
 
 .greating {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font: bold;
-    font-size: x-large;
+    font-size: medium;
     margin-left: 15vw; margin-right: 15vw;
 }
 .ayat {
@@ -32,13 +31,14 @@ body {
 
 
 .buttons {
+    position: absolute;
+    justify-self: center;
     height: fit-content; width: fit-content;
-    position: fixed;
-    margin-top: 40vh; margin-left: 30vw; margin-right: 30vw;
+    margin-top: 35vh;
 }
 .start_button {
     color: white;
-    width: 100px; height: 40px;
+    width: 95px; height: 35px;
     background: transparent; border: 2px solid white;
     border-radius: 6px;
 }
