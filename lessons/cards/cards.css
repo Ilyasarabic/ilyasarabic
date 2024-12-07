@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+body {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-color: #FFF5EA;
+}
+
+
+
+
+
+
+
+
+
+
+.cards-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; width: 100vw;
+}
+label {
+    display: block;
+    position: absolute;
+    border-radius: 13px;
+    height: 48vh; width: 340px;
+
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+.card {
+    position: absolute;
+    display: flex;
+    border-radius: 13px;
+    height: 100%; width: 100%;
+    background-color:white;
+    box-shadow: 2px 4px 10px 1px rgba(173, 144, 144, 0.8);
+
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+}
+.the-front, .the-back {
+    position: absolute;
+    height: 80%; width: 100%;
+    border-radius: 13px;
+    backface-visibility: hidden;
+}
+.the-back {
+    transform: rotateY(180deg);
+}
+input {
+    display: none;
+}
+:checked + .card {
+    transform: rotateY(180deg);
+}
+
+
+
+.card-img {
+    position: relative;
+    height: 98%; width: 96%;
+    margin: 2%;
+    border-radius: 13px;
+}
+img {
+    min-height: 100%; min-width: 100%;
+    max-height: 100%; max-width: 100%;
+    border-radius: 7px;
+    flex-shrink: 0;
+}
+h3 {
+    position: relative;
+    text-align: center;
+    font-size: xx-large;
+}
+
+

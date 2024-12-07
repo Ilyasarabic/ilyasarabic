@@ -1,0 +1,53 @@
+{
+    "book_one": {
+        "modul_one": {
+            "lesson_one": {
+                "ar": [
+
+                ],
+                "ru": [
+
+                ],
+                "img": [
+                    
+                ]
+            },
+            "lesson_two": {
+                
+            },
+            "lesson_three": {
+
+            },
+            "lesson_four": {
+
+            },
+            "lesson_five": {
+
+            },
+            "lesson_six": {
+
+            },
+            "lesson_seven": {
+
+            },
+            "lesson_eight": {
+
+            }
+        },
+        "modul_two": {
+        },
+        "modul_three": {
+        },
+        "modul_four": {
+        },
+        "modul_five": {
+        },
+        "modul_six": {
+        },
+        "modul_seven": {
+        },
+        "modul_eight": {
+        }
+    }
+
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="home.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+
+        <title>Ilyas ARABIC</title>
+    </head>
+
+    <body>
+        
+        <div id="navbar" class="navbar">
+            <a href="" onclick="back()"><i id="back" class="fa-solid fa-arrow-left"></i></a>
+            <h1 class="thename">Ilyas ARABIC</h1>
+        </div>
+
+        <div class="container_parent">
+
+            <div class="container_child_books" id="books">
+
+                <div id="book_one" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/A1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Первая часть
+                        </div>
+                        <div class="book_descrip">
+                            Вводный уровень для тех, кто только начинает изучать 
+                            арабский язык. Здесь представлены базовые фразы и 
+                            простая грамматика.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_two" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/A2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Вторая часть
+                        </div>
+                        <div class="book_descrip">
+                            Углубляет знания начального уровня. Главная цель – 
+                            расширение активного словарного запаса.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_three" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/B1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Третья часть
+                        </div>
+                        <div class="book_descrip">
+                            Переход на новый уровень повседневного общения. Вводятся 
+                            более сложные тексты, которые готовят к реальной практике.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_four" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/B2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Четвертая часть
+                        </div>
+                        <div class="book_descrip">
+                            Расширяет грамматический фундамент, углубляет работу с 
+                            текстами средней сложности. Это путь к свободе 
+                            выражения мыслей.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_five" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/C1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Пятая часть
+                        </div>
+                        <div class="book_descrip">
+                            Уровень «средний» – больше фокуса на нюансах грамматики 
+                            и стилях речи. Темы становятся шире, включая культурные 
+                            аспекты арабского мира.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_six" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/C2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Шестая часть
+                        </div>
+                        <div class="book_descrip">
+                            Углубление в сложные структуры языка, ориентированные 
+                            на уверенное общение. Включает богатую лексику и тексты 
+                            академического уровня.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_seven" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/D1.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Седьмая часть
+                        </div>
+                        <div class="book_descrip">
+                            «Выше среднего», где важна точность речи и восприятия. 
+                            Книга учит понимать сложные тексты и вести 
+                            содержательные беседы.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+                <div id="book_eight" class="book">
+                    <div class="img">
+                        <img class="img" src="assets/jpg/book_covers/D2.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="book_name">
+                            العربية بين يديك
+                        </div>
+                        <div class="book_lvl">
+                            Восьмая часть
+                        </div>
+                        <div class="book_descrip">
+                            Академические тексты и глубокий анализ языка делают 
+                            этот уровень настоящим испытанием для тех, кто 
+                            стремится к профессионализиу.
+                        </div>
+                    </div>
+                    <button class="book_open_button" onclick="onBookClick('A1')">Открыть</button>
+                </div>
+
+            </div>
+
+            <div class="container_child_moduls" id="moduls">
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 1</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('1')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 2</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('2')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 3</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('3')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 4</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('4')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 5</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('5')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 6</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('6')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 7</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('7')">Открыть</button>
+                </div>
+
+                <div class="modul">
+                    <div class="modul_wrapper">
+                        <h1 class="modul_name">Модуль 8</h1>
+                        <p class="modul_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="modul_open_button" onclick="onModulClick('8')">Открыть</button>
+                </div>
+
+            </div>
+
+            <div class="container_child_lessons" id="lessons">
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 1</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 2</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 3</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 4</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 5</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 6</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 7</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+
+                <div class="lesson">
+                    <div class="lesson_wrapper">
+                        <h1 class="lesson_name">Урок 8</h1>
+                        <p class="lesson_descrip">Статус: 0%</p>
+                    </div>
+                    <button class="lesson_open_button" onclick="onLessonClick('1')">Открыть</button>
+                </div>
+                
+            </div>
+
+            <div class="choice" id="choice">
+                <div class="wrapper">
+                    <button id="start-btn-cards" class="cards" onclick="onChoiceClick()">Карточки</button>
+                    <hr>
+                    <button id="start-btn-write-ar" class="write-ar" onclick="onChoiceClick()">Письмо (на арабском)</button>
+                    <button id="start-btn-tf" class="true0false" onclick="onChoiceClick()">Верно/Неверно</button>
+                    <button id="start-btn-test-pics-ar" class="test-pics-ar" onclick="onChoiceClick()">Тест (фото на арабском)</button>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://kit.fontawesome.com/7a4cdc79fe.js" crossorigin="anonymous"></script>
+        <script src="home.js"></script>
+    </body>
+</html>
