@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демо-урок арабского языка</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B5FBF;
+            --primary-dark: #6D3FA3;
+            --primary-light: #9D7BC9;
+            --secondary: #2EC4B6;
+            --accent: #FF3366;
+            --success: #2ECC71;
+            --warning: #FF9F1C;
+            --error: #E74C3C;
+            --background: #0F0F1A;
+            --surface: #1A1A2E;
+            --surface-light: #252542;
+            --surface-lighter: #30305A;
+            --text-primary: #F0F0FF;
+            --text-secondary: #B8B8D6;
+            --text-muted: #7A7A9A;
+            --gradient-primary: linear-gradient(135deg, #8B5FBF 0%, #6D3FA3 100%);
+            --gradient-secondary: linear-gradient(135deg, #2EC4B6 0%, #20A895 100%);
+            --gradient-accent: linear-gradient(135deg, #FF3366 0%, #D92252 100%);
+            --gradient-warning: linear-gradient(135deg, #FF9F1C 0%, #E58A0F 100%);
+            --gradient-surface: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --shadow-light: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --border-radius: 28px;
+            --border-radius-small: 20px;
+            --border-radius-large: 36px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .arabic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.35;
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        .arabic-letter {
+            position: absolute;
+            font-size: 140px;
+            color: rgba(139, 95, 191, 0.6);
+            font-family: 'Arial', sans-serif;
+            animation: floatArabic 20s infinite ease-in-out;
+            text-shadow: 0 0 30px rgba(139, 95, 191, 0.4);
+            font-weight: bold;
+        }
+
+        .letter-1 {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+            font-size: 180px;
+            color: rgba(139, 95, 191, 0.7);
+        }
+
+        .letter-2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: -4s;
+            font-size: 160px;
+            color: rgba(46, 196, 182, 0.6);
+        }
+
+        .letter-3 {
+            bottom: 35%;
+            left: 12%;
+            animation-delay: -8s;
+            font-size: 170px;
+            color: rgba(139, 95, 191, 0.65);
+        }
+
+        .letter-4 {
+            bottom: 20%;
+            right: 18%;
+            animation-delay: -12s;
+            font-size: 150px;
+            color: rgba(255, 51, 102, 0.55);
+        }
+
+        .letter-5 {
+            top: 55%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            animation-delay: -6s;
+            font-size: 200px;
+            color: rgba(139, 95, 191, 0.7);
+        }
+
+        @keyframes floatArabic {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+            20% {
+                transform: translate(40px, 25px) rotate(12deg) scale(1.08);
+                opacity: 0.7;
+            }
+            40% {
+                transform: translate(20px, 45px) rotate(-8deg) scale(1.05);
+                opacity: 0.8;
+            }
+            60% {
+                transform: translate(-35px, 20px) rotate(5deg) scale(1.06);
+                opacity: 0.7;
+            }
+            80% {
+                transform: translate(15px, -25px) rotate(-10deg) scale(1.07);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(139, 95, 191, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(46, 196, 182, 0.08) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .lesson-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 10px;
+            position: relative;
+            max-height: 100vh;
+        }
+
+        .lesson-stage {
+            display: none;
+        }
+
+        .lesson-stage.active {
+            display: block;
+        }
+
+        .cards-section {
+            margin-bottom: 2vh;
+            height: auto;
+            min-height: 60vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .single-card-container {
+            height: auto;
+            min-height: 50vh;
+            flex: 1;
+            position: relative;
+            perspective: 1200px;
+        }
+
+        .single-card {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: var(--gradient-surface);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .single-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 2vh 3vw;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: var(--gradient-surface);
+            justify-content: space-between;
+        }
+
+        .card-back {
+            background: var(--surface-light);
+            transform: rotateY(180deg);
+            justify-content: space-between;
+        }
+
+        .card-back-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            gap: 2vh;
+            text-align: center;
+        }
+
+        .word-image {
+            width: 55vw;
+            height: 55vw;
+            max-width: 240px;
+            max-height: 240px;
+            min-width: 140px;
+            min-height: 140px;
+            border-radius: 18px;
+            object-fit: cover;
+            margin: 2vh auto;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+
+        .word-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        .arabic-word {
+            font-size: clamp(22px, 6.5vw, 34px);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1vh;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.2;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .transcription {
+            font-size: clamp(13px, 3.8vw, 15px);
+            color: var(--text-secondary);
+            margin-bottom: 1vh;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .translation {
+            font-size: clamp(15px, 4.2vw, 19px);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1vh;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .example-verse {
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 0 2vw;
+            word-wrap: break-word;
+        }
+
+        .example-translation {
+            font-size: clamp(13px, 3.8vw, 15px);
+            color: var(--text-secondary);
+            line-height: 1.3;
+            font-style: italic;
+            padding: 0 3vw;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1vh 0 0 0;
+            margin-top: auto;
+        }
+
+        .audio-btn {
+            width: clamp(42px, 11vw, 48px);
+            height: clamp(42px, 11vw, 48px);
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: clamp(15px, 4vw, 17px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .flip-btn {
+            width: clamp(38px, 10vw, 42px);
+            height: clamp(38px, 10vw, 42px);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: clamp(12px, 3vw, 14px);
+            backdrop-filter: blur(10px);
+            opacity: 0.7;
+        }
+
+        .flip-btn:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .audio-btn:active, .flip-btn:active {
+            transform: scale(0.9);
+        }
+
+        .cards-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1vh 0;
+            padding: 0 10px;
+        }
+
+        .nav-btn {
+            width: clamp(42px, 11vw, 48px);
+            height: clamp(42px, 11vw, 48px);
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: clamp(15px, 4vw, 17px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .nav-btn:active:not(:disabled) {
+            transform: scale(0.9);
+        }
+
+        .cards-progress {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 1vh 0 2vh 0;
+            flex-wrap: wrap;
+        }
+
+        .progress-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .progress-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .exercise-content {
+            background: var(--gradient-surface);
+            border-radius: var(--border-radius);
+            padding: 15px 12px;
+            margin-bottom: 2vh;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: auto;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exercise-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .exercise-title {
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .exercise-description {
+            font-size: clamp(11px, 3.2vw, 13px);
+            color: var(--text-secondary);
+        }
+
+        .lesson-progress {
+            margin: 2vh 0;
+            padding: 0 10px;
+            display: none;
+        }
+
+        .lesson-progress.visible {
+            display: block;
+        }
+
+        .progress-bar-container {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .start-exercises-btn {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            max-width: 450px;
+            padding: clamp(14px, 3.5vw, 16px) clamp(18px, 4.5vw, 25px);
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: 800;
+            font-size: clamp(14px, 3.8vw, 16px);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+
+        .start-exercises-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .start-exercises-btn:hover::before {
+            left: 100%;
+        }
+
+        .start-exercises-btn:active {
+            transform: translateX(-50%) scale(0.98);
+        }
+
+        .exercise-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: clamp(10px, 2.8vw, 12px) clamp(12px, 3.5vw, 15px);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: clamp(12px, 3.2vw, 14px);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:active, .btn-secondary:active {
+            transform: scale(0.95);
+        }
+
+        .true-false-exercise {
+            text-align: center;
+        }
+
+        .true-false-image {
+            width: 45vw;
+            height: 45vw;
+            max-width: 180px;
+            max-height: 180px;
+            min-width: 100px;
+            min-height: 100px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin: 0 auto 2vh auto;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .true-false-question {
+            font-size: clamp(14px, 4vw, 16px);
+            font-weight: 600;
+            margin-bottom: 3vh;
+            color: var(--text-primary);
+            line-height: 1.3;
+            padding: 0 2vw;
+        }
+
+        .true-false-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-true, .btn-false {
+            padding: clamp(12px, 3.2vw, 14px) clamp(14px, 3.8vw, 16px);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: clamp(12px, 3.2vw, 14px);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-true {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .btn-false {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .btn-true:active, .btn-false:active {
+            transform: scale(0.95);
+        }
+
+        .audio-test-exercise {
+            text-align: center;
+        }
+
+        .audio-test-image {
+            width: 40vw;
+            height: 40vw;
+            max-width: 160px;
+            max-height: 160px;
+            min-width: 90px;
+            min-height: 90px;
+            border-radius: 14px;
+            object-fit: cover;
+            margin: 0 auto 2vh auto;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-btn-large {
+            width: clamp(42px, 11vw, 48px);
+            height: clamp(42px, 11vw, 48px);
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: clamp(16px, 4.5vw, 20px);
+            margin: 0 auto 2vh auto;
+            box-shadow: var(--shadow-light);
+        }
+
+        .audio-btn-large:active {
+            transform: scale(0.9);
+        }
+
+        .audio-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .audio-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            padding: clamp(10px, 2.8vw, 12px) clamp(12px, 3.5vw, 15px);
+            border-radius: var(--border-radius-small);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: clamp(12px, 3.2vw, 14px);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-option:active {
+            transform: scale(0.98);
+        }
+
+        .audio-option.selected {
+            border-color: var(--primary);
+            background: rgba(139, 95, 191, 0.15);
+        }
+
+        .audio-option.correct {
+            border-color: var(--success);
+            background: rgba(46, 204, 113, 0.15);
+        }
+
+        .audio-option.incorrect {
+            border-color: var(--error);
+            background: rgba(231, 76, 60, 0.15);
+        }
+
+        .writing-exercise {
+            text-align: center;
+        }
+
+        .writing-image {
+            width: 40vw;
+            height: 40vw;
+            max-width: 160px;
+            max-height: 160px;
+            min-width: 90px;
+            min-height: 90px;
+            border-radius: 14px;
+            object-fit: cover;
+            margin: 0 auto 2vh auto;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .writing-audio {
+            margin-bottom: 2vh;
+        }
+
+        .writing-input-container {
+            margin-bottom: 2vh;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .writing-input {
+            width: 100%;
+            padding: clamp(12px, 3.2vw, 14px) clamp(12px, 3.5vw, 15px);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: clamp(12px, 3.5vw, 14px);
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .writing-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(139, 95, 191, 0.1);
+        }
+
+        .writing-feedback {
+            margin-top: 1vh;
+            padding: 8px 12px;
+            border-radius: var(--border-radius-small);
+            font-weight: 600;
+            display: none;
+            font-size: clamp(11px, 3.2vw, 13px);
+        }
+
+        .writing-feedback.correct {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            display: block;
+        }
+
+        .writing-feedback.incorrect {
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--error);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            display: block;
+        }
+
+        .results-section {
+            text-align: center;
+            background: var(--gradient-surface);
+            border-radius: var(--border-radius);
+            padding: clamp(15px, 4vw, 20px) clamp(12px, 3.5vw, 15px);
+            margin-bottom: 2vh;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .results-icon {
+            font-size: clamp(36px, 10vw, 48px);
+            margin-bottom: 2vh;
+            color: var(--success);
+        }
+
+        .results-title {
+            font-size: clamp(18px, 5vw, 20px);
+            font-weight: 700;
+            margin-bottom: 1vh;
+            color: var(--text-primary);
+        }
+
+        .results-score {
+            font-size: clamp(28px, 8vw, 36px);
+            font-weight: 800;
+            margin-bottom: 1vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .results-description {
+            font-size: clamp(12px, 3.5vw, 14px);
+            color: var(--text-secondary);
+            margin-bottom: 3vh;
+            line-height: 1.4;
+            padding: 0 2vw;
+        }
+
+        .results-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .exercise-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1vh;
+            font-size: clamp(11px, 3.2vw, 13px);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .exercise-counter {
+            color: var(--text-primary);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-stage.active {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes cardChange {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .single-card {
+            animation: cardChange 0.3s ease-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .back-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--gradient-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: var(--surface-light);
+            transform: translateY(-2px);
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            flex: 1;
+        }
+
+        .single-card-container::before,
+        .single-card-container::after {
+            display: none;
+        }
+
+        [class*="number"],
+        [class*="counter"],
+        [class*="index"] {
+            display: none !important;
+        }
+
+        @media (max-height: 600px) {
+            .cards-section {
+                min-height: 55vh;
+            }
+            
+            .single-card {
+                min-height: 350px;
+            }
+            
+            .word-image {
+                width: 45vw;
+                height: 45vw;
+                margin: 1vh auto;
+            }
+            
+            .example-verse {
+                margin: 1vh 0;
+            }
+            
+            .card-actions {
+                padding-top: 0.5vh;
+            }
+            
+            .exercise-content {
+                min-height: 250px;
+                padding: 12px 10px;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .cards-section {
+                min-height: 50vh;
+            }
+            
+            .single-card {
+                min-height: 300px;
+            }
+            
+            .word-image {
+                width: 40vw;
+                height: 40vw;
+            }
+            
+            .arabic-word {
+                margin-bottom: 0.5vh;
+                font-size: clamp(18px, 5vw, 26px);
+            }
+            
+            .example-verse {
+                margin: 0.5vh 0;
+                font-size: clamp(14px, 4vw, 16px);
+            }
+            
+            .exercise-content {
+                min-height: 220px;
+                padding: 10px 8px;
+            }
+            
+            .start-exercises-btn {
+                bottom: 10px;
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) and (max-height: 400px) {
+            .cards-section {
+                min-height: 45vh;
+            }
+            
+            .single-card {
+                min-height: 250px;
+            }
+            
+            .word-image {
+                width: 30vw;
+                height: 30vw;
+                margin: 0.2vh auto;
+            }
+            
+            .arabic-word {
+                font-size: clamp(16px, 4.5vw, 20px);
+            }
+            
+            .card-front, .card-back {
+                padding: 1vh 2vw;
+            }
+            
+            .exercise-content {
+                min-height: 200px;
+                padding: 8px 6px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .lesson-container {
+                padding: 0 5px;
+            }
+            
+            .exercise-content {
+                padding: 10px 8px;
+            }
+            
+            .start-exercises-btn {
+                width: calc(100% - 20px);
+                bottom: 10px;
+            }
+            
+            .audio-option {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+        }
+
+        @media (min-height: 800px) {
+            .cards-section {
+                min-height: 65vh;
+            }
+            
+            .single-card {
+                min-height: 500px;
+            }
+            
+            .word-image {
+                width: 60vw;
+                height: 60vw;
+                max-width: 280px;
+                max-height: 280px;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .audio-btn, .flip-btn, .nav-btn, 
+            .btn-primary, .btn-secondary,
+            .btn-true, .btn-false,
+            .audio-option {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .writing-input {
+                min-height: 44px;
+                font-size: 16px;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .cards-section {
+                min-height: 35vh;
+            }
+            
+            .exercise-content {
+                min-height: 180px;
+                padding: 8px 10px;
+            }
+            
+            .start-exercises-btn {
+                position: relative;
+                bottom: auto;
+                margin-top: 1vh;
+                margin-bottom: 0.5vh;
+            }
+            
+            .word-image {
+                width: 30vw;
+                height: 30vw;
+            }
+            
+            .true-false-image,
+            .audio-test-image,
+            .writing-image {
+                width: 25vw;
+                height: 25vw;
+            }
+        }
+
+        .audio-test-exercise .exercise-content {
+            min-height: 280px;
+        }
+
+        .audio-options {
+            max-height: 200px;
+        }
+
+        .card-front > *:not(.card-actions),
+        .card-back > *:not(.card-actions) {
+            flex-shrink: 0;
+        }
+
+        .card-actions {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="arabic-bg">
+        <div class="arabic-letter letter-1">ب</div>
+        <div class="arabic-letter letter-2">ت</div>
+        <div class="arabic-letter letter-3">ث</div>
+        <div class="arabic-letter letter-4">ج</div>
+        <div class="arabic-letter letter-5">ح</div>
+    </div>
+
+    <div class="lesson-container">
+        <div class="page-header">
+            <div class="back-button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <h1 id="lesson-title">Основные слова</h1>
+        </div>
+
+        <div class="lesson-progress" id="lesson-progress">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="lesson-stage active" id="stage-cards">
+            <div class="cards-section">
+                <div class="single-card-container">
+                    <div class="single-card" id="single-card" onclick="lesson.flipCard()">
+                        <div class="card-front" id="card-front">
+                            <div class="word-image" id="card-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="arabic-word" id="card-arabic">كتاب</div>
+                            <div class="transcription" id="card-transcription">kitāb</div>
+                            <div class="translation" id="card-translation">книга</div>
+                            
+                            <div class="card-actions">
+                                <button class="flip-btn" onclick="event.stopPropagation(); lesson.flipCard()">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="audio-btn" id="card-audio-btn" onclick="event.stopPropagation(); lesson.playCurrentAudio()">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card-back" id="card-back">
+                            <div class="card-back-content">
+                                <div class="example-verse" id="card-example-verse">هذا كتاب جديد</div>
+                                <div class="example-translation" id="card-example-translation">Это новая книга</div>
+                            </div>
+                            
+                            <div class="card-actions">
+                                <button class="flip-btn" onclick="event.stopPropagation(); lesson.flipCard()">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="audio-btn" id="card-back-audio-btn" onclick="event.stopPropagation(); lesson.playCurrentAudio()">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards-navigation">
+                    <button class="nav-btn" id="prev-card-btn" onclick="lesson.previousCard()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <button class="nav-btn" id="next-card-btn" onclick="lesson.nextCard()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="cards-progress" id="cards-progress"></div>
+            </div>
+            
+            <button class="start-exercises-btn" onclick="lesson.startExercises()">
+                <i class="fas fa-play"></i>
+                Начать упражнения
+            </button>
+        </div>
+
+        <div class="lesson-stage" id="stage-exercise1">
+            <div class="exercise-content true-false-exercise" id="exercise-true-false">
+                <div class="exercise-header">
+                    <h2 class="exercise-title">Верно/Неверно</h2>
+                    <p class="exercise-description">Определите, соответствует ли перевод слову</p>
+                </div>
+                
+                <div class="exercise-progress">
+                    <span>Вопрос</span>
+                    <span class="exercise-counter" id="true-false-counter">1/3</span>
+                </div>
+                
+                <div id="true-false-content"></div>
+            </div>
+        </div>
+
+        <div class="lesson-stage" id="stage-exercise2">
+            <div class="exercise-content audio-test-exercise" id="exercise-audio">
+                <div class="exercise-header">
+                    <h2 class="exercise-title">Аудио тест</h2>
+                    <p class="exercise-description">Прослушайте слово и выберите правильный перевод</p>
+                </div>
+                
+                <div class="exercise-progress">
+                    <span>Вопрос</span>
+                    <span class="exercise-counter" id="audio-counter">1/3</span>
+                </div>
+                
+                <div id="audio-test-content"></div>
+            </div>
+        </div>
+
+        <div class="lesson-stage" id="stage-exercise3">
+            <div class="exercise-content writing-exercise" id="exercise-writing">
+                <div class="exercise-header">
+                    <h2 class="exercise-title">Письмо</h2>
+                    <p class="exercise-description">Напишите перевод услышанного слова</p>
+                </div>
+                
+                <div class="exercise-progress">
+                    <span>Вопрос</span>
+                    <span class="exercise-counter" id="writing-counter">1/3</span>
+                </div>
+                
+                <div id="writing-content"></div>
+            </div>
+        </div>
+
+        <div class="lesson-stage" id="stage-results">
+            <div class="results-section" id="results-content">
+                <div class="results-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h2 class="results-title">Урок завершен!</h2>
+                <div class="results-score" id="final-score">0%</div>
+                <p class="results-description" id="results-description">
+                    Отличная работа! Вы успешно завершили все упражнения.
+                </p>
+                
+                <div class="results-actions">
+                    <button class="btn-secondary" onclick="lesson.restartLesson()">
+                        <i class="fas fa-redo"></i>
+                        Пройти заново
+                    </button>
+                    <button class="btn-primary" onclick="lesson.goToBot()">
+                        <i class="fab fa-telegram"></i>
+                        Перейти в бот
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class OptimizedLesson {
+            constructor() {
+                this.images = [
+                    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=400&fit=crop', // книга
+                    'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&h=400&fit=crop', // ручка
+                    'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=400&fit=crop'  // чай
+                ];
+                
+                // Создаем аудио элементы для каждого слова
+                this.audioElements = {};
+                
+                this.lessonData = {
+                    lesson: { title: "Основные слова", id: 1 },
+                    words: [
+                        {
+                            id: 1, arabic: "كتاب", transcription: "kitāb", translation: "книга",
+                            example_verse: "هذا كتاب جديد", example_translation: "Это новая книга",
+                            image_url: this.images[0], audio_url: 'kitab_audio'
+                        },
+                        {
+                            id: 2, arabic: "قلم", transcription: "qalam", translation: "ручка", 
+                            example_verse: "أحتاج إلى قلم", example_translation: "Мне нужна ручка",
+                            image_url: this.images[1], audio_url: 'qalam_audio'
+                        },
+                        {
+                            id: 3, arabic: "شاي", transcription: "shāy", translation: "чай",
+                            example_verse: "أشرب الشاي", example_translation: "Я пью чай",
+                            image_url: this.images[2], audio_url: 'shay_audio'
+                        }
+                    ]
+                };
+                
+                this.currentStage = 'cards';
+                this.currentCardIndex = 0;
+                this.isCardFlipped = false;
+                this.exerciseData = { trueFalse: {}, audio: {}, writing: {} };
+                this.domCache = new Map();
+                this.lessonStartTime = Date.now();
+                this.isLessonCompleted = false;
+                
+                this.initializeAudio();
+            }
+
+            initializeAudio() {
+                // Создаем текстовые озвучки с помощью SpeechSynthesis
+                // Используем фонетическое написание для правильного произношения
+                this.audioElements = {
+                    'kitab_audio': this.createSpeechAudio('كِتَاب'),
+                    'qalam_audio': this.createSpeechAudio('قَلَم'),
+                    'shay_audio': this.createSpeechAudio('شَاي')
+                };
+            }
+
+            createSpeechAudio(text) {
+                return {
+                    play: () => {
+                        if ('speechSynthesis' in window) {
+                            // Останавливаем любую текущую речь
+                            speechSynthesis.cancel();
+                            
+                            const utterance = new SpeechSynthesisUtterance(text);
+                            utterance.lang = 'ar-SA'; // Арабский язык (Саудовская Аравия)
+                            utterance.rate = 0.7; // Еще медленнее для лучшего восприятия
+                            utterance.pitch = 1.0;
+                            utterance.volume = 1.0;
+                            
+                            // Пробуем разные голоса для лучшего произношения
+                            const voices = speechSynthesis.getVoices();
+                            const arabicVoice = voices.find(voice => 
+                                voice.lang.startsWith('ar') || 
+                                voice.lang.includes('ar') ||
+                                voice.name.toLowerCase().includes('arabic')
+                            );
+                            
+                            if (arabicVoice) {
+                                utterance.voice = arabicVoice;
+                            }
+                            
+                            speechSynthesis.speak(utterance);
+                        } else {
+                            console.log('Озвучка не поддерживается в этом браузере');
+                            // Альтернатива: показать сообщение пользователю
+                            this.showToast('Аудио не поддерживается в вашем браузере', 'warning');
+                        }
+                    }
+                };
+            }
+
+            initialize() {
+                this.getCachedElement('lesson-title').textContent = this.lessonData.lesson.title;
+                this.initializeExercises();
+                this.renderCurrentCard();
+                this.setupEventListeners();
+                
+                // Ждем загрузки голосов
+                if ('speechSynthesis' in window) {
+                    speechSynthesis.getVoices(); // Инициализируем голоса
+                }
+            }
+
+            initializeExercises() {
+                const words = this.lessonData.words;
+                
+                // True/False упражнения - ВСЕ правильные ответы
+                const tfWords = this.getRandomWords(words, 3);
+                this.exerciseData.trueFalse = {
+                    questions: tfWords.map(word => ({
+                        word,
+                        correctAnswer: true, // Всегда правильный ответ
+                        userAnswer: null,
+                        isCorrect: false,
+                        displayedTranslation: word.translation // Всегда правильный перевод
+                    })),
+                    currentIndex: 0,
+                    score: 0,
+                    total: 3
+                };
+
+                // Аудио упражнения
+                const audioWords = this.getRandomWords(words, 3);
+                this.exerciseData.audio = {
+                    questions: audioWords.map(word => ({
+                        word,
+                        options: this.generateSmartAudioOptions(words, word),
+                        userAnswer: null,
+                        isCorrect: false
+                    })),
+                    currentIndex: 0,
+                    score: 0,
+                    total: 3
+                };
+
+                // Письменные упражнения
+                const writingWords = this.getRandomWords(words, 3);
+                this.exerciseData.writing = {
+                    questions: writingWords.map(word => ({
+                        word,
+                        userAnswer: '',
+                        isCorrect: false
+                    })),
+                    currentIndex: 0,
+                    score: 0,
+                    total: 3
+                };
+
+                console.log('Exercises initialized:', {
+                    trueFalse: this.exerciseData.trueFalse.questions.map(q => q.word.translation),
+                    audio: this.exerciseData.audio.questions.map(q => q.word.translation),
+                    writing: this.exerciseData.writing.questions.map(q => q.word.translation)
+                });
+            }
+
+            getRandomWords(words, count) {
+                return [...words].sort(() => Math.random() - 0.5).slice(0, count);
+            }
+
+            getWrongTranslation(allWords, correctWord) {
+                const otherWords = allWords.filter(w => w.id !== correctWord.id);
+                return otherWords.length > 0 ? 
+                    otherWords[Math.floor(Math.random() * otherWords.length)].translation : 
+                    'неизвестное слово';
+            }
+
+            generateSmartAudioOptions(allWords, correctWord) {
+                const options = [{ text: correctWord.translation, isCorrect: true }];
+                const otherWords = allWords.filter(w => w.id !== correctWord.id);
+                
+                for (let i = 0; i < 3 && otherWords.length > 0; i++) {
+                    const randomIndex = Math.floor(Math.random() * otherWords.length);
+                    const randomWord = otherWords.splice(randomIndex, 1)[0];
+                    options.push({ text: randomWord.translation, isCorrect: false });
+                }
+                
+                return options.sort(() => Math.random() - 0.5);
+            }
+
+            getCachedElement(id) {
+                if (!this.domCache.has(id)) {
+                    this.domCache.set(id, document.getElementById(id));
+                }
+                return this.domCache.get(id);
+            }
+
+            renderCurrentCard() {
+                const word = this.lessonData.words[this.currentCardIndex];
+                if (!word) return;
+                
+                this.isCardFlipped = false;
+                this.getCachedElement('single-card').classList.remove('flipped');
+                
+                // Обновляем лицевую сторону
+                this.updateCardImage('card-image', word.image_url);
+                this.getCachedElement('card-arabic').textContent = word.arabic;
+                this.getCachedElement('card-transcription').textContent = word.transcription;
+                this.getCachedElement('card-translation').textContent = word.translation;
+                
+                // Обновляем обратную сторону
+                this.getCachedElement('card-example-verse').textContent = word.example_verse;
+                this.getCachedElement('card-example-translation').textContent = word.example_translation;
+                
+                this.updateCardNavigation();
+                this.updateProgressDots();
+            }
+
+            updateCardImage(elementId, imageUrl) {
+                const container = this.getCachedElement(elementId);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                if (imageUrl) {
+                    const img = new Image();
+                    img.src = imageUrl;
+                    img.alt = 'Арабское слово';
+                    img.className = 'word-image';
+                    img.onerror = () => this.showDefaultImage(container);
+                    container.appendChild(img);
+                } else {
+                    this.showDefaultImage(container);
+                }
+            }
+
+            showDefaultImage(container) {
+                container.innerHTML = '<div class="word-image" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center;"><i class="fas fa-image" style="font-size: 48px; color: rgba(255, 255, 255, 0.8);"></i></div>';
+            }
+
+            updateCardNavigation() {
+                const totalCards = this.lessonData.words.length;
+                const prevBtn = this.getCachedElement('prev-card-btn');
+                const nextBtn = this.getCachedElement('next-card-btn');
+                
+                if (prevBtn) prevBtn.disabled = this.currentCardIndex === 0;
+                if (nextBtn) nextBtn.disabled = this.currentCardIndex === totalCards - 1;
+            }
+
+            updateProgressDots() {
+                const container = this.getCachedElement('cards-progress');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                const totalCards = this.lessonData.words.length;
+                
+                for (let i = 0; i < totalCards; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `progress-dot ${i === this.currentCardIndex ? 'active' : ''}`;
+                    dot.addEventListener('click', () => this.goToCard(i));
+                    container.appendChild(dot);
+                }
+            }
+
+            goToCard(index) {
+                if (index >= 0 && index < this.lessonData.words.length) {
+                    this.currentCardIndex = index;
+                    this.renderCurrentCard();
+                }
+            }
+
+            nextCard() {
+                if (this.currentCardIndex < this.lessonData.words.length - 1) {
+                    this.currentCardIndex++;
+                    this.renderCurrentCard();
+                }
+            }
+
+            previousCard() {
+                if (this.currentCardIndex > 0) {
+                    this.currentCardIndex--;
+                    this.renderCurrentCard();
+                }
+            }
+
+            flipCard() {
+                this.isCardFlipped = !this.isCardFlipped;
+                const card = this.getCachedElement('single-card');
+                if (card) {
+                    card.classList.toggle('flipped', this.isCardFlipped);
+                }
+            }
+
+            playCurrentAudio() {
+                const word = this.lessonData.words[this.currentCardIndex];
+                if (word?.audio_url && this.audioElements[word.audio_url]) {
+                    this.audioElements[word.audio_url].play();
+                }
+            }
+
+            playAudio(audioKey) {
+                if (this.audioElements[audioKey]) {
+                    this.audioElements[audioKey].play();
+                }
+            }
+
+            showToast(message, type = 'info') {
+                // Упрощенная версия тоста без анимаций
+                console.log(`${type.toUpperCase()}: ${message}`);
+            }
+
+            startExercises() {
+                this.showProgressBar();
+                this.startTrueFalseExercise();
+            }
+
+            startTrueFalseExercise() {
+                this.exerciseData.trueFalse.currentIndex = 0;
+                this.exerciseData.trueFalse.score = 0;
+                this.goToStage('exercise1');
+                this.showTrueFalseQuestion(0);
+            }
+
+            showTrueFalseQuestion(index) {
+                const exercise = this.exerciseData.trueFalse;
+                if (index >= exercise.questions.length) {
+                    this.startAudioExercise();
+                    return;
+                }
+
+                const question = exercise.questions[index];
+                const container = this.getCachedElement('true-false-content');
+                
+                this.updateExerciseCounter('true-false', index + 1, exercise.questions.length);
+                
+                if (container) {
+                    container.innerHTML = this.generateTrueFalseHTML(question, index);
+                }
+            }
+
+            generateTrueFalseHTML(question, index) {
+                const word = question.word;
+                return `
+                    ${word.image_url ? `<img src="${word.image_url}" alt="${word.arabic}" class="true-false-image">` : ''}
+                    <div class="true-false-question">"${word.arabic}" означает "${question.displayedTranslation}"?</div>
+                    <div class="true-false-buttons">
+                        <button class="btn-true" onclick="lesson.handleTrueFalseAnswer(true, ${index})">
+                            <i class="fas fa-check"></i> Верно
+                        </button>
+                        <button class="btn-false" onclick="lesson.handleTrueFalseAnswer(false, ${index})">
+                            <i class="fas fa-times"></i> Неверно
+                        </button>
+                    </div>
+                `;
+            }
+
+            handleTrueFalseAnswer(userAnswer, questionIndex) {
+                const exercise = this.exerciseData.trueFalse;
+                const question = exercise.questions[questionIndex];
+                const isCorrect = userAnswer === question.correctAnswer;
+                
+                question.userAnswer = userAnswer;
+                question.isCorrect = isCorrect;
+                if (isCorrect) exercise.score++;
+
+                console.log('True/False answer:', {
+                    question: questionIndex,
+                    userAnswer,
+                    correctAnswer: question.correctAnswer,
+                    isCorrect,
+                    currentScore: exercise.score
+                });
+
+                this.disableTrueFalseButtons();
+                exercise.currentIndex = questionIndex + 1;
+                
+                setTimeout(() => this.showTrueFalseQuestion(exercise.currentIndex), 1000);
+            }
+
+            disableTrueFalseButtons() {
+                document.querySelectorAll('.btn-true, .btn-false').forEach(btn => {
+                    btn.disabled = true;
+                });
+            }
+
+            startAudioExercise() {
+                this.exerciseData.audio.currentIndex = 0;
+                this.exerciseData.audio.score = 0;
+                this.goToStage('exercise2');
+                this.showAudioQuestion(0);
+            }
+
+            showAudioQuestion(index) {
+                const exercise = this.exerciseData.audio;
+                if (index >= exercise.questions.length) {
+                    this.startWritingExercise();
+                    return;
+                }
+
+                const question = exercise.questions[index];
+                const container = this.getCachedElement('audio-test-content');
+                
+                this.updateExerciseCounter('audio', index + 1, exercise.questions.length);
+                
+                if (container) {
+                    container.innerHTML = this.generateAudioHTML(question, index);
+                }
+            }
+
+            generateAudioHTML(question, index) {
+                const word = question.word;
+                return `
+                    ${word.image_url ? `<img src="${word.image_url}" alt="${word.arabic}" class="audio-test-image">` : ''}
+                    ${word.audio_url ? `<button class="audio-btn-large" onclick="lesson.playAudio('${word.audio_url}')"><i class="fas fa-volume-up"></i></button>` : ''}
+                    <div class="audio-options">
+                        ${question.options.map((option, i) => `
+                            <div class="audio-option" onclick="lesson.handleAudioAnswer(${option.isCorrect}, ${index}, ${i})">
+                                ${option.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            handleAudioAnswer(isCorrect, questionIndex, optionIndex) {
+                const exercise = this.exerciseData.audio;
+                const question = exercise.questions[questionIndex];
+                
+                question.userAnswer = optionIndex;
+                question.isCorrect = isCorrect;
+                if (isCorrect) exercise.score++;
+
+                console.log('Audio answer:', {
+                    question: questionIndex,
+                    option: optionIndex,
+                    isCorrect,
+                    currentScore: exercise.score
+                });
+
+                this.showAudioFeedback(questionIndex, optionIndex, isCorrect);
+                exercise.currentIndex = questionIndex + 1;
+                
+                setTimeout(() => this.showAudioQuestion(exercise.currentIndex), 1000);
+            }
+
+            showAudioFeedback(questionIndex, selectedIndex, isCorrect) {
+                document.querySelectorAll('.audio-option').forEach((option, index) => {
+                    option.style.pointerEvents = 'none';
+                    if (index === selectedIndex) {
+                        option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    }
+                });
+            }
+
+            startWritingExercise() {
+                this.exerciseData.writing.currentIndex = 0;
+                this.exerciseData.writing.score = 0;
+                this.goToStage('exercise3');
+                this.showWritingQuestion(0);
+            }
+
+            showWritingQuestion(index) {
+                const exercise = this.exerciseData.writing;
+                if (index >= exercise.questions.length) {
+                    this.showResults();
+                    return;
+                }
+
+                const question = exercise.questions[index];
+                const container = this.getCachedElement('writing-content');
+                
+                this.updateExerciseCounter('writing', index + 1, exercise.questions.length);
+                
+                if (container) {
+                    container.innerHTML = this.generateWritingHTML(question, index);
+                }
+            }
+
+            generateWritingHTML(question, index) {
+                const word = question.word;
+                return `
+                    ${word.image_url ? `<img src="${word.image_url}" alt="${word.arabic}" class="writing-image">` : ''}
+                    ${word.audio_url ? `
+                        <div class="writing-audio">
+                            <button class="audio-btn-large" onclick="lesson.playAudio('${word.audio_url}')">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    ` : ''}
+                    <div class="writing-input-container">
+                        <input type="text" class="writing-input" placeholder="Напишите перевод..." id="writing-answer-${index}">
+                        <div class="writing-feedback" id="writing-feedback-${index}"></div>
+                    </div>
+                    <button class="btn-primary" onclick="lesson.handleWritingAnswer(${index})">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                `;
+            }
+
+            handleWritingAnswer(questionIndex) {
+                const input = document.getElementById(`writing-answer-${questionIndex}`);
+                const feedback = document.getElementById(`writing-feedback-${questionIndex}`);
+                const exercise = this.exerciseData.writing;
+                const question = exercise.questions[questionIndex];
+                
+                if (!input || !input.value) return;
+                
+                const userAnswer = this.normalizeText(input.value);
+                const correctAnswer = this.normalizeText(question.word.translation);
+                const isCorrect = userAnswer === correctAnswer;
+                
+                question.userAnswer = input.value;
+                question.isCorrect = isCorrect;
+                if (isCorrect) exercise.score++;
+
+                console.log('Writing answer:', {
+                    question: questionIndex,
+                    userAnswer: userAnswer,
+                    correctAnswer: correctAnswer,
+                    isCorrect,
+                    currentScore: exercise.score
+                });
+
+                if (isCorrect) {
+                    feedback.textContent = 'Правильно! ✓';
+                    feedback.className = 'writing-feedback correct';
+                } else {
+                    feedback.textContent = `Неправильно. Правильный ответ: ${question.word.translation}`;
+                    feedback.className = 'writing-feedback incorrect';
+                }
+                
+                feedback.style.display = 'block';
+                input.disabled = true;
+                exercise.currentIndex = questionIndex + 1;
+                
+                setTimeout(() => this.showWritingQuestion(exercise.currentIndex), 1500);
+            }
+
+            normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?;:]/g, '').normalize('NFKC');
+            }
+
+            showResults() {
+                this.goToStage('results');
+                
+                const totalScore = this.exerciseData.trueFalse.score + 
+                                  this.exerciseData.audio.score + 
+                                  this.exerciseData.writing.score;
+                const totalQuestions = this.exerciseData.trueFalse.total + 
+                                      this.exerciseData.audio.total + 
+                                      this.exerciseData.writing.total;
+                const percentage = Math.round((totalScore / totalQuestions) * 100);
+                
+                console.log('Final results:', {
+                    trueFalse: `${this.exerciseData.trueFalse.score}/${this.exerciseData.trueFalse.total}`,
+                    audio: `${this.exerciseData.audio.score}/${this.exerciseData.audio.total}`,
+                    writing: `${this.exerciseData.writing.score}/${this.exerciseData.writing.total}`,
+                    total: `${totalScore}/${totalQuestions}`,
+                    percentage: percentage + '%'
+                });
+                
+                this.getCachedElement('final-score').textContent = `${percentage}%`;
+                
+                let description = '';
+                if (percentage >= 90) description = 'Отличный результат! Вы прекрасно усвоили материал. 🎯';
+                else if (percentage >= 70) description = 'Хороший результат! Продолжайте в том же духе. 💪';
+                else if (percentage >= 50) description = 'Неплохо, но есть куда стремиться. Повторите материал. 📚';
+                else description = 'Рекомендуем повторить урок для лучшего усвоения. 🔄';
+                
+                this.getCachedElement('results-description').textContent = description;
+                this.saveLessonCompletion(percentage);
+            }
+
+            saveLessonCompletion(score) {
+                if (!this.isLessonCompleted) {
+                    this.isLessonCompleted = true;
+                    console.log('Урок завершен с результатом:', score + '%');
+                }
+            }
+
+            goToStage(stage) {
+                document.querySelectorAll('.lesson-stage').forEach(el => el.classList.remove('active'));
+                const stageElement = this.getCachedElement(`stage-${stage}`);
+                if (stageElement) stageElement.classList.add('active');
+                this.updateProgressBar(stage);
+                this.currentStage = stage;
+            }
+
+            updateProgressBar(stage) {
+                const stages = ['cards', 'exercise1', 'exercise2', 'exercise3', 'results'];
+                const progress = (stages.indexOf(stage) / (stages.length - 1)) * 100;
+                this.getCachedElement('progress-bar').style.width = `${progress}%`;
+            }
+
+            showProgressBar() {
+                this.getCachedElement('lesson-progress').classList.add('visible');
+            }
+
+            hideProgressBar() {
+                this.getCachedElement('lesson-progress').classList.remove('visible');
+            }
+
+            updateExerciseCounter(exerciseType, current, total) {
+                this.getCachedElement(`${exerciseType}-counter`).textContent = `${current}/${total}`;
+            }
+
+            restartLesson() {
+                this.currentStage = 'cards';
+                this.currentCardIndex = 0;
+                this.isCardFlipped = false;
+                this.isLessonCompleted = false;
+                
+                Object.values(this.exerciseData).forEach(exercise => {
+                    exercise.currentIndex = 0;
+                    exercise.score = 0;
+                    exercise.questions.forEach(q => {
+                        q.userAnswer = null;
+                        q.isCorrect = false;
+                    });
+                });
+                
+                this.lessonStartTime = Date.now();
+                this.hideProgressBar();
+                this.goToStage('cards');
+                this.renderCurrentCard();
+            }
+
+            goToBot() {
+                window.open('https://t.me/the_alfiya_bot', '_blank');
+            }
+
+            setupEventListeners() {
+                document.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && this.currentStage === 'exercise3') {
+                        const exercise = this.exerciseData.writing;
+                        this.handleWritingAnswer(exercise.currentIndex);
+                    }
+                });
+
+                let touchStartX = 0;
+                const card = this.getCachedElement('single-card');
+                
+                if (card) {
+                    card.addEventListener('touchstart', (e) => {
+                        touchStartX = e.touches[0].clientX;
+                    });
+
+                    card.addEventListener('touchend', (e) => {
+                        const touchEndX = e.changedTouches[0].clientX;
+                        const diff = touchStartX - touchEndX;
+                        
+                        if (Math.abs(diff) > 50) {
+                            diff > 0 ? this.nextCard() : this.previousCard();
+                        }
+                    });
+                }
+            }
+        }
+
+        const lesson = new OptimizedLesson();
+        document.addEventListener('DOMContentLoaded', () => lesson.initialize());
+    </script>
+</body>
+</html>
