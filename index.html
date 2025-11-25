@@ -1286,7 +1286,13 @@
                     'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=400&fit=crop'  // чай
                 ];
                 
-                // Создаем аудио элементы для каждого слова
+                // Аудио файлы в папке assets/audio
+                this.audioFiles = {
+                    'kitab_audio': 'assets/audio/audio-1.mp3',
+                    'qalam_audio': 'assets/audio/audio-2.mp3', 
+                    'shay_audio': 'assets/audio/audio-3.mp3'
+                };
+                
                 this.audioElements = {};
                 
                 this.lessonData = {
@@ -1322,48 +1328,101 @@
             }
 
             initializeAudio() {
-                // Создаем текстовые озвучки с помощью SpeechSynthesis
-                // Используем фонетическое написание для правильного произношения
-                this.audioElements = {
-                    'kitab_audio': this.createSpeechAudio('كِتَاب'),
-                    'qalam_audio': this.createSpeechAudio('قَلَم'),
-                    'shay_audio': this.createSpeechAudio('شَاي')
-                };
+                // Создаем аудио элементы с реальными файлами и fallback на SpeechSynthesis
+                for (const [audioKey, audioUrl] of Object.entries(this.audioFiles)) {
+                    this.audioElements[audioKey] = this.createAudioPlayer(audioUrl, audioKey);
+                }
             }
 
-            createSpeechAudio(text) {
+            createAudioPlayer(audioUrl, audioKey) {
+                let audioElement = null;
+                
+                // Пробуем создать HTML Audio элемент
+                try {
+                    audioElement = new Audio();
+                    audioElement.src = audioUrl;
+                    audioElement.preload = 'auto';
+                    
+                    // Обработчик ошибок загрузки
+                    audioElement.addEventListener('error', (e) => {
+                        console.warn(`Ошибка загрузки аудио ${audioUrl}:`, e);
+                        this.fallbackToSpeechSynthesis(audioKey);
+                    });
+                    
+                } catch (error) {
+                    console.warn('HTML Audio не поддерживается:', error);
+                }
+                
                 return {
                     play: () => {
-                        if ('speechSynthesis' in window) {
-                            // Останавливаем любую текущую речь
-                            speechSynthesis.cancel();
-                            
-                            const utterance = new SpeechSynthesisUtterance(text);
-                            utterance.lang = 'ar-SA'; // Арабский язык (Саудовская Аравия)
-                            utterance.rate = 0.7; // Еще медленнее для лучшего восприятия
-                            utterance.pitch = 1.0;
-                            utterance.volume = 1.0;
-                            
-                            // Пробуем разные голоса для лучшего произношения
-                            const voices = speechSynthesis.getVoices();
-                            const arabicVoice = voices.find(voice => 
-                                voice.lang.startsWith('ar') || 
-                                voice.lang.includes('ar') ||
-                                voice.name.toLowerCase().includes('arabic')
-                            );
-                            
-                            if (arabicVoice) {
-                                utterance.voice = arabicVoice;
-                            }
-                            
-                            speechSynthesis.speak(utterance);
+                        // Сначала пробуем HTML Audio
+                        if (audioElement) {
+                            audioElement.play().catch(error => {
+                                console.warn('HTML Audio воспроизведение не удалось:', error);
+                                this.fallbackToSpeechSynthesis(audioKey);
+                            });
                         } else {
-                            console.log('Озвучка не поддерживается в этом браузере');
-                            // Альтернатива: показать сообщение пользователю
-                            this.showToast('Аудио не поддерживается в вашем браузере', 'warning');
+                            // Fallback на SpeechSynthesis
+                            this.fallbackToSpeechSynthesis(audioKey);
                         }
                     }
                 };
+            }
+
+            fallbackToSpeechSynthesis(audioKey) {
+                // Сопоставляем audioKey с текстом для SpeechSynthesis
+                const textMap = {
+                    'kitab_audio': 'كِتَاب',
+                    'qalam_audio': 'قَلَم', 
+                    'shay_audio': 'شَاي'
+                };
+                
+                const text = textMap[audioKey];
+                if (!text || !('speechSynthesis' in window)) {
+                    console.log('Аудио не доступно для:', audioKey);
+                    this.showAudioNotAvailableMessage();
+                    return;
+                }
+                
+                // Останавливаем любую текущую речь
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.7;
+                utterance.pitch = 1.0;
+                utterance.volume = 1.0;
+                
+                // Пробуем найти арабский голос
+                const voices = speechSynthesis.getVoices();
+                const arabicVoice = voices.find(voice => 
+                    voice.lang.startsWith('ar') || 
+                    voice.lang.includes('ar') ||
+                    voice.name.toLowerCase().includes('arabic')
+                );
+                
+                if (arabicVoice) {
+                    utterance.voice = arabicVoice;
+                }
+                
+                utterance.onerror = (event) => {
+                    console.warn('SpeechSynthesis ошибка:', event);
+                    this.showAudioNotAvailableMessage();
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+
+            showAudioNotAvailableMessage() {
+                // Можно показать сообщение пользователю
+                console.log('Аудио временно недоступно');
+                // Или показать toast сообщение
+                // this.showToast('Аудио временно недоступно', 'warning');
+            }
+
+            showToast(message, type = 'info') {
+                // Упрощенная версия тоста
+                console.log(`${type.toUpperCase()}: ${message}`);
             }
 
             initialize() {
@@ -1372,9 +1431,9 @@
                 this.renderCurrentCard();
                 this.setupEventListeners();
                 
-                // Ждем загрузки голосов
+                // Ждем загрузки голосов для SpeechSynthesis fallback
                 if ('speechSynthesis' in window) {
-                    speechSynthesis.getVoices(); // Инициализируем голоса
+                    speechSynthesis.getVoices();
                 }
             }
 
@@ -1567,11 +1626,6 @@
                 if (this.audioElements[audioKey]) {
                     this.audioElements[audioKey].play();
                 }
-            }
-
-            showToast(message, type = 'info') {
-                // Упрощенная версия тоста без анимаций
-                console.log(`${type.toUpperCase()}: ${message}`);
             }
 
             startExercises() {
