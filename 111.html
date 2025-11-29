@@ -1076,6 +1076,13 @@
         .video-element::-webkit-media-controls-volume-slider { display: none !important; }
         .video-element::-webkit-media-controls-fullscreen-button { display: none !important; }
 
+        /* Стили для inline видео */
+        .video-element {
+            -webkit-playsinline: true;
+            playsinline: true;
+            webkit-playsinline: true;
+        }
+
         .text-content {
             width: 100%;
             display: flex;
@@ -1385,7 +1392,7 @@
                     <!-- Передняя сторона карточки -->
                     <div class="card-front">
                         <div class="video-container">
-                            <video class="video-element" id="videoElement">
+                            <video class="video-element" id="videoElement" playsinline webkit-playsinline>
                                 Ваш браузер не поддерживает видео тег.
                             </video>
                         </div>
@@ -1593,6 +1600,11 @@
             videoElement.src = VIDEO_PATH;
             videoElement.type = 'video/mp4';
             
+            // Устанавливаем атрибуты для inline воспроизведения
+            videoElement.setAttribute('playsinline', 'true');
+            videoElement.setAttribute('webkit-playsinline', 'true');
+            videoElement.setAttribute('muted', 'true'); // Мут по умолчанию для автовоспроизведения
+            
             videoElement.onloadeddata = () => {
                 console.log('Видео успешно загружено');
             };
@@ -1611,16 +1623,27 @@
         function startLesson() {
             if (isLessonStarted) return;
             
+            const videoElement = document.getElementById('videoElement');
             const startBtn = document.getElementById('startBtn');
             
             isLessonStarted = true;
             startBtn.disabled = true;
             startBtn.textContent = 'Урок идет...';
             
-            console.log('Запуск анимации...');
+            console.log('Запуск видео...');
             
-            // Запускаем анимацию вместо видео
-            setTimeout(flipCard, 500);
+            // Включаем звук при начале урока
+            videoElement.muted = false;
+            
+            videoElement.play().then(() => {
+                console.log('Видео запущено успешно');
+                videoElement.loop = false;
+            }).catch(e => {
+                console.error('Ошибка воспроизведения:', e);
+                isLessonStarted = false;
+                startBtn.disabled = false;
+                startBtn.textContent = 'Начать';
+            });
         }
 
         function flipCard() {
@@ -1661,11 +1684,10 @@
                 iphoneContainer.classList.add('tablet-jump');
                 tabletPng.style.opacity = '0';
             });
-            
-            setTimeout(resetLesson, 5000);
         }
 
         function resetLesson() {
+            const videoElement = document.getElementById('videoElement');
             const startBtn = document.getElementById('startBtn');
             const card = document.getElementById('card');
             const iphoneContainer = document.getElementById('iphoneContainer');
@@ -1677,6 +1699,8 @@
             tabletJumpStarted = false;
             
             requestAnimationFrame(() => {
+                videoElement.currentTime = 0;
+                videoElement.loop = true;
                 startBtn.disabled = false;
                 startBtn.textContent = 'Начать';
                 card.classList.remove('flipped');
@@ -1692,9 +1716,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateContent();
             
+            const videoElement = document.getElementById('videoElement');
+            const videoContainer = document.querySelector('.video-container');
             const startBtn = document.getElementById('startBtn');
             
+            videoElement.preload = "auto";
+            
+            videoContainer.addEventListener('click', function() {
+                if (videoElement.paused) {
+                    videoElement.play().catch(e => {
+                        console.error('Ошибка воспроизведения:', e);
+                    });
+                } else {
+                    videoElement.pause();
+                }
+            });
+            
             startBtn.addEventListener('click', startLesson);
+            
+            videoElement.addEventListener('ended', function() {
+                console.log('Событие ended вызвано');
+                if (isLessonStarted && !isVideoCompleted) {
+                    isVideoCompleted = true;
+                    console.log('Видео завершено! Превращение в iPhone...');
+                    
+                    setTimeout(flipCard, 500);
+                    setTimeout(resetLesson, 15000);
+                }
+            });
         });
     </script>
 </body>
