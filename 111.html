@@ -1611,27 +1611,16 @@
         function startLesson() {
             if (isLessonStarted) return;
             
-            const videoElement = document.getElementById('videoElement');
             const startBtn = document.getElementById('startBtn');
             
             isLessonStarted = true;
             startBtn.disabled = true;
             startBtn.textContent = 'Урок идет...';
             
-            console.log('Запуск урока...');
+            console.log('Запуск анимации...');
             
-            // Включаем звук при начале урока
-            videoElement.muted = false;
-            
-            videoElement.play().then(() => {
-                console.log('Видео запущено успешно');
-                videoElement.loop = false;
-            }).catch(e => {
-                console.error('Ошибка воспроизведения:', e);
-                isLessonStarted = false;
-                startBtn.disabled = false;
-                startBtn.textContent = 'Начать';
-            });
+            // Запускаем анимацию вместо видео
+            setTimeout(flipCard, 500);
         }
 
         function flipCard() {
@@ -1672,10 +1661,11 @@
                 iphoneContainer.classList.add('tablet-jump');
                 tabletPng.style.opacity = '0';
             });
+            
+            setTimeout(resetLesson, 5000);
         }
 
         function resetLesson() {
-            const videoElement = document.getElementById('videoElement');
             const startBtn = document.getElementById('startBtn');
             const card = document.getElementById('card');
             const iphoneContainer = document.getElementById('iphoneContainer');
@@ -1687,8 +1677,6 @@
             tabletJumpStarted = false;
             
             requestAnimationFrame(() => {
-                videoElement.currentTime = 0;
-                videoElement.loop = true;
                 startBtn.disabled = false;
                 startBtn.textContent = 'Начать';
                 card.classList.remove('flipped');
@@ -1704,34 +1692,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateContent();
             
-            const videoElement = document.getElementById('videoElement');
-            const videoContainer = document.querySelector('.video-container');
             const startBtn = document.getElementById('startBtn');
             
-            videoElement.preload = "auto";
-            
-            videoContainer.addEventListener('click', function() {
-                if (videoElement.paused) {
-                    videoElement.play().catch(e => {
-                        console.error('Ошибка воспроизведения:', e);
-                    });
-                } else {
-                    videoElement.pause();
-                }
-            });
-            
             startBtn.addEventListener('click', startLesson);
-            
-            videoElement.addEventListener('ended', function() {
-                console.log('Событие ended вызвано');
-                if (isLessonStarted && !isVideoCompleted) {
-                    isVideoCompleted = true;
-                    console.log('Видео завершено! Превращение в iPhone...');
-                    
-                    setTimeout(flipCard, 500);
-                    setTimeout(resetLesson, 15000);
-                }
-            });
         });
     </script>
 </body>
